@@ -72,15 +72,15 @@ if($_['passwordChangeSupported']) {
 			/** @var \OCP\Authentication\TwoFactorAuth\IProvidesPersonalSettings $provider */
 			$provider = $data['provider'];
 			if ($provider instanceof \OCP\Authentication\TwoFactorAuth\IProvidesIcons) {
-				$icon = $provider->getDarkIcon();
+				$iconClass = $provider->getDarkIcon();
 			} else {
-				$icon = image_path('core', 'actions/password.svg');
+				$iconClass = 'icon-password';
 			}
 			/** @var \OCP\Authentication\TwoFactorAuth\IPersonalProviderSettings $settings */
 			$settings = $data['settings'];
 			?>
 			<h3>
-				<img class="two-factor-provider-settings-icon" src="<?php p($icon) ?>" alt="">
+				<div class="two-factor-provider-settings-icon <?php p($iconClass) ?>"></div>
 				<?php p($provider->getDisplayName()) ?>
 			</h3>
 			<?php print_unescaped($settings->getBody()->fetchPage()) ?>
